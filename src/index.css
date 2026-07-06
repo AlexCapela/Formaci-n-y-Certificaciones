@@ -1,0 +1,64 @@
+@import "tailwindcss";
+
+@theme {
+  --color-black: #09090b;
+  --color-acid: #CCFF00;
+  --color-signal: #FF4500;
+  --color-zinc-900: #18181b;
+  --color-zinc-800: #27272a;
+  --color-zinc-400: #a1a1aa;
+
+  --font-sans: "Inter", system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", "Geist Mono", monospace;
+  --font-display: "Space Grotesk", "Inter", sans-serif;
+}
+
+@layer base {
+  :root {
+    color-scheme: dark;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 6rem;
+  }
+
+  body {
+    @apply bg-black text-white font-sans antialiased;
+    background-color: #09090b;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-display font-bold tracking-tight;
+    text-wrap: balance;
+  }
+
+  a:focus-visible,
+  button:focus-visible {
+    @apply outline-2 outline-offset-2 outline-acid;
+  }
+}
+
+@layer utilities {
+  .brutal-border {
+    @apply border border-zinc-800 rounded-sm;
+  }
+
+  .brutal-btn {
+    @apply px-6 py-3 font-mono text-xs md:text-sm uppercase tracking-wider font-medium transition-all duration-300 rounded-sm border border-zinc-700 text-zinc-200 hover:border-acid hover:text-acid hover:bg-acid/5 active:scale-[0.98];
+  }
+
+  .brutal-btn-primary {
+    @apply px-8 py-4 font-mono text-xs md:text-sm uppercase tracking-wider font-bold transition-all duration-300 rounded-sm bg-acid text-black hover:bg-[#d9ff40] hover:shadow-[0_0_32px_rgba(204,255,0,0.25)] active:scale-[0.98] border-none;
+  }
+
+  .img-brutal {
+    @apply grayscale-[60%] contrast-110 hover:grayscale-0 hover:contrast-100 transition-all duration-700 ease-[cubic-bezier(0.16,1,0.3,1)];
+  }
+
+  .bg-grid {
+    background-image: linear-gradient(to right, rgba(255,255,255,0.035) 1px, transparent 1px),
+                      linear-gradient(to bottom, rgba(255,255,255,0.035) 1px, transparent 1px);
+    background-size: 48px 48px;
+  }
+}
