@@ -83,8 +83,12 @@ export function Footer() {
             <FolderOpen size={18} />
             Ver proyectos
           </a>
-          {/* TODO: sustituir por la URL real de LinkedIn */}
-          <a href="#" className="brutal-btn inline-flex items-center gap-2 px-10 py-5">
+          <a
+            href="https://www.linkedin.com/in/alex-capela-euro-data-solutions-b310b4285"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="brutal-btn inline-flex items-center gap-2 px-10 py-5"
+          >
             <UserPlus size={18} />
             Conectar en LinkedIn
           </a>
@@ -95,12 +99,21 @@ export function Footer() {
         <div className="w-full flex flex-col md:flex-row justify-between items-center gap-6 font-mono text-xs text-zinc-600 uppercase tracking-widest">
           <p>© {new Date().getFullYear()} Alex Capela. Todos los derechos reservados.</p>
           <div className="flex gap-6">
-            {/* TODO: sustituir por las URLs reales */}
-            <a href="#" className="inline-flex items-center gap-2 hover:text-white transition-colors">
+            <a
+              href="https://www.linkedin.com/in/alex-capela-euro-data-solutions-b310b4285"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 hover:text-white transition-colors"
+            >
               LinkedIn
               <ArrowUpRight size={14} />
             </a>
-            <a href="#" className="inline-flex items-center gap-2 hover:text-white transition-colors">
+            <a
+              href="https://github.com/AlexCapela"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 hover:text-white transition-colors"
+            >
               GitHub
               <ArrowUpRight size={14} />
             </a>
