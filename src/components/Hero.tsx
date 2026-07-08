@@ -1,7 +1,9 @@
 import { motion } from 'framer-motion';
 import { Download } from 'lucide-react';
+import { useApp } from '../i18n/useApp';
 
 export function Hero() {
+  const { t } = useApp();
   return (
     <section id="inicio" className="relative min-h-screen flex items-center pt-28 pb-16 px-6 overflow-hidden bg-grid">
       <div className="absolute inset-0 pointer-events-none bg-gradient-to-b from-transparent via-transparent to-black" />
@@ -14,7 +16,7 @@ export function Hero() {
             transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
             className="font-mono text-acid text-xs md:text-sm tracking-widest uppercase"
           >
-            Alex Capela // Portfolio Profesional
+            {t.hero.eyebrow}
           </motion.div>
 
           <motion.h1
@@ -23,9 +25,9 @@ export function Hero() {
             transition={{ duration: 0.8, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
             className="text-5xl sm:text-6xl md:text-7xl xl:text-8xl font-display font-bold leading-[0.92] tracking-tighter uppercase"
           >
-            Transformando<br/>
-            <span className="text-transparent border-text">Datos en</span><br/>
-            Resultados
+            {t.hero.title1}<br/>
+            <span className="text-transparent border-text">{t.hero.title2}</span><br/>
+            {t.hero.title3}
           </motion.h1>
 
           <motion.p
@@ -34,7 +36,7 @@ export function Hero() {
             transition={{ duration: 0.8, delay: 0.25, ease: [0.16, 1, 0.3, 1] }}
             className="font-mono text-zinc-300 text-xs md:text-sm tracking-widest uppercase"
           >
-            Data Analyst · AI Automation · Web Designer · SaaS Builder
+            {t.hero.roles}
           </motion.p>
 
           <motion.div
@@ -48,7 +50,7 @@ export function Hero() {
               <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-acid"></span>
             </span>
             <span className="font-mono text-white text-xs tracking-widest uppercase">
-              Disponible para oportunidades en España y remoto
+              {t.hero.availability}
             </span>
           </motion.div>
 
@@ -59,7 +61,7 @@ export function Hero() {
             className="mt-6 flex flex-wrap gap-4"
           >
             <a href="#contact" className="brutal-btn-primary">
-              Contactar
+              {t.hero.ctaContact}
             </a>
             <a
               href="/Alex-Capela-CV-Espanol.pdf"
@@ -67,10 +69,10 @@ export function Hero() {
               className="brutal-btn inline-flex items-center gap-2"
             >
               <Download size={16} />
-              Descargar CV
+              {t.hero.ctaCV}
             </a>
-            <a href="#about" className="brutal-btn">
-              Mi Trayectoria
+            <a href="#trayectoria" className="brutal-btn">
+              {t.hero.ctaTrajectory}
             </a>
           </motion.div>
         </div>
@@ -85,19 +87,12 @@ export function Hero() {
           <div className="relative aspect-[4/5] overflow-hidden rounded-sm border border-zinc-800">
             <img
               src="/alex-capela-retrato.png"
-              alt="Alex Capela — retrato profesional"
+              alt={t.hero.portraitAlt}
               className="object-cover object-top w-full h-full img-brutal"
             />
           </div>
         </motion.div>
       </div>
-
-      <style>{`
-        .border-text {
-          -webkit-text-stroke: 1px rgba(255, 255, 255, 0.5);
-          color: transparent;
-        }
-      `}</style>
     </section>
   );
 }

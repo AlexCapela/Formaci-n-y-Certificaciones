@@ -16,6 +16,8 @@
 @layer base {
   :root {
     color-scheme: dark;
+    --grid-line: rgba(255, 255, 255, 0.035);
+    --stroke-color: rgba(255, 255, 255, 0.5);
   }
 
   html {
@@ -24,8 +26,9 @@
   }
 
   body {
-    @apply bg-black text-white font-sans antialiased;
-    background-color: #09090b;
+    @apply text-white font-sans antialiased;
+    background-color: var(--color-black);
+    transition: background-color 0.4s ease, color 0.4s ease;
   }
 
   h1, h2, h3, h4, h5, h6 {
@@ -39,6 +42,36 @@
   }
 }
 
+/* Light theme — unlayered so it reliably overrides Tailwind's @theme tokens.
+   Toggling the `.light` class on <html> flips the whole palette. */
+html.light {
+  color-scheme: light;
+  --grid-line: rgba(0, 0, 0, 0.05);
+  --stroke-color: rgba(0, 0, 0, 0.42);
+
+  --color-black: #ffffff;   /* page background */
+  --color-white: #0a0a0b;   /* primary foreground */
+  --color-zinc-950: #f4f4f5;
+  --color-zinc-900: #e7e7ea;
+  --color-zinc-800: #d4d4d8;
+  --color-zinc-700: #bcbcc4;
+  --color-zinc-600: #a1a1aa;
+  --color-zinc-500: #71717a;
+  --color-zinc-400: #52525b;
+  --color-zinc-300: #3f3f46;
+  --color-zinc-200: #27272a;
+  --color-acid: #4f6b00;    /* readable green accent on light backgrounds */
+}
+
+html.light body,
+html.light header,
+html.light section,
+html.light footer,
+html.light .brutal-btn,
+html.light .brutal-btn-primary {
+  transition: background-color 0.4s ease, border-color 0.4s ease, color 0.4s ease;
+}
+
 @layer utilities {
   .brutal-border {
     @apply border border-zinc-800 rounded-sm;
@@ -49,7 +82,7 @@
   }
 
   .brutal-btn-primary {
-    @apply px-8 py-4 font-mono text-xs md:text-sm uppercase tracking-wider font-bold transition-all duration-300 rounded-sm bg-acid text-black hover:bg-[#d9ff40] hover:shadow-[0_0_32px_rgba(204,255,0,0.25)] active:scale-[0.98] border-none;
+    @apply px-8 py-4 font-mono text-xs md:text-sm uppercase tracking-wider font-bold transition-all duration-300 rounded-sm bg-acid text-black hover:brightness-110 hover:shadow-[0_0_32px_rgba(204,255,0,0.25)] active:scale-[0.98] border-none;
   }
 
   .img-brutal {
@@ -57,8 +90,13 @@
   }
 
   .bg-grid {
-    background-image: linear-gradient(to right, rgba(255,255,255,0.035) 1px, transparent 1px),
-                      linear-gradient(to bottom, rgba(255,255,255,0.035) 1px, transparent 1px);
+    background-image: linear-gradient(to right, var(--grid-line) 1px, transparent 1px),
+                      linear-gradient(to bottom, var(--grid-line) 1px, transparent 1px);
     background-size: 48px 48px;
+  }
+
+  .border-text {
+    -webkit-text-stroke: 1px var(--stroke-color);
+    color: transparent;
   }
 }

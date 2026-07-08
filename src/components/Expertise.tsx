@@ -1,40 +1,22 @@
 import { motion } from 'framer-motion';
 import { BarChart3, Rocket, Code2, Cpu, LineChart } from 'lucide-react';
+import { useApp } from '../i18n/useApp';
 
-const categories = [
-  {
-    icon: <BarChart3 size={24} className="text-acid" />,
-    index: "01",
-    title: "Datos y BI",
-    skills: ["Power BI", "SQL", "Dashboards", "Análisis de datos", "Modelado de datos"]
-  },
-  {
-    icon: <Rocket size={24} className="text-signal" />,
-    index: "02",
-    title: "Inteligencia Artificial",
-    skills: ["IA Generativa", "Automatización con IA", "Agentes de IA", "Prompt Engineering"]
-  },
-  {
-    icon: <Code2 size={24} className="text-white" />,
-    index: "03",
-    title: "Desarrollo Web",
-    skills: ["React", "TypeScript", "Tailwind CSS", "Landing Pages", "E-commerce"]
-  },
-  {
-    icon: <Cpu size={24} className="text-acid" />,
-    index: "04",
-    title: "Backend y Automatización",
-    skills: ["Python", "APIs", "Supabase", "Google Cloud", "Automatización de procesos"]
-  },
-  {
-    icon: <LineChart size={24} className="text-signal" />,
-    index: "05",
-    title: "Negocios Digitales",
-    skills: ["Marketing Digital", "CRM", "Ventas", "SaaS", "Emprendimiento"]
-  }
+const categoryIcons = [
+  <BarChart3 size={24} className="text-acid" />,
+  <Rocket size={24} className="text-signal" />,
+  <Code2 size={24} className="text-white" />,
+  <Cpu size={24} className="text-acid" />,
+  <LineChart size={24} className="text-signal" />,
 ];
 
 export function Expertise() {
+  const { t } = useApp();
+  const categories = t.skills.categories.map((c, i) => ({
+    icon: categoryIcons[i],
+    index: String(i + 1).padStart(2, '0'),
+    ...c,
+  }));
   return (
     <section id="expertise" className="py-24 md:py-32 px-6 border-t border-zinc-900 bg-grid">
       <div className="max-w-7xl mx-auto flex flex-col gap-16">
@@ -42,10 +24,10 @@ export function Expertise() {
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-8">
           <div>
             <h2 className="text-4xl md:text-6xl font-display uppercase tracking-tighter leading-none mb-4">
-              Habilidades<br/>Técnicas
+              {t.skills.title1}<br/>{t.skills.title2}
             </h2>
             <p className="font-mono text-zinc-400 text-sm tracking-widest uppercase">
-              // Competencias por área
+              {t.skills.subtitle}
             </p>
           </div>
         </div>

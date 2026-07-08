@@ -1,61 +1,23 @@
 import { useEffect, useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { X } from 'lucide-react';
+import { useApp } from '../i18n/useApp';
 
-// Certificados reales. Para añadir uno nuevo: copiar la imagen a /public
-// (nombre sin espacios ni acentos) e incluir una entrada más en este array.
-const gallery = [
-  {
-    src: "/cert-power-bi.png",
-    title: "Microsoft Power BI",
-    institution: "SENAI São Paulo",
-    hours: "32h",
-    period: "2025",
-    category: "Datos y BI"
-  },
-  {
-    src: "/cert-ciencia-datos-google-cloud.png",
-    title: "Fundamentos de Ciencia de Datos — Google Cloud",
-    institution: "SENAI São Paulo",
-    hours: "20h",
-    period: "2025",
-    category: "Datos y BI"
-  },
-  {
-    src: "/cert-banco-de-datos.png",
-    title: "Programación de Bases de Datos",
-    institution: "SENAI São Paulo",
-    hours: "120h",
-    period: "2025",
-    category: "Backend"
-  },
-  {
-    src: "/cert-python-ciberseguridad.png",
-    title: "Programación en Python para Ciberseguridad",
-    institution: "SENAI São Paulo",
-    hours: "40h",
-    period: "2025",
-    category: "Backend"
-  },
-  {
-    src: "/cert-logica-programacion.png",
-    title: "Lógica de Programación",
-    institution: "SENAI São Paulo",
-    hours: "14h",
-    period: "2025",
-    category: "Fundamentos"
-  },
-  {
-    src: "/cert-sql-xperiun.png",
-    title: "Minicurso de SQL",
-    institution: "Xperiun",
-    hours: "2h",
-    period: "2025",
-    category: "Datos y BI"
-  }
+// Datos fijos de los certificados. El título y la categoría se traducen (i18n).
+// Para añadir uno nuevo: copiar la imagen a /public (nombre sin espacios ni
+// acentos), añadir una entrada aquí y otra en `certs.items` de cada idioma.
+const certMeta = [
+  { src: "/cert-power-bi.png", institution: "SENAI São Paulo", hours: "32h", period: "2025" },
+  { src: "/cert-ciencia-datos-google-cloud.png", institution: "SENAI São Paulo", hours: "20h", period: "2025" },
+  { src: "/cert-banco-de-datos.png", institution: "SENAI São Paulo", hours: "120h", period: "2025" },
+  { src: "/cert-python-ciberseguridad.png", institution: "SENAI São Paulo", hours: "40h", period: "2025" },
+  { src: "/cert-logica-programacion.png", institution: "SENAI São Paulo", hours: "14h", period: "2025" },
+  { src: "/cert-sql-xperiun.png", institution: "Xperiun", hours: "2h", period: "2025" },
 ];
 
 export function Certifications() {
+  const { t } = useApp();
+  const gallery = certMeta.map((c, i) => ({ ...c, ...t.certs.items[i] }));
   const [selected, setSelected] = useState<typeof gallery[number] | null>(null);
 
   useEffect(() => {
@@ -74,13 +36,13 @@ export function Certifications() {
         <div className="flex flex-col gap-6 max-w-3xl">
           <div className="flex items-center gap-4">
             <span className="h-px w-12 bg-acid"></span>
-            <span className="font-mono text-acid text-xs tracking-widest uppercase">Aprendizaje continuo</span>
+            <span className="font-mono text-acid text-xs tracking-widest uppercase">{t.certs.eyebrow}</span>
           </div>
           <h2 className="text-4xl md:text-6xl font-display uppercase tracking-tighter leading-none">
-            Formación y<br/>Certificaciones
+            {t.certs.title1}<br/>{t.certs.title2}
           </h2>
           <p className="text-zinc-400 font-sans text-lg md:text-xl leading-relaxed">
-            Formación continua en datos, tecnología, inteligencia artificial, desarrollo web y negocios digitales.
+            {t.certs.intro}
           </p>
         </div>
 
@@ -99,7 +61,7 @@ export function Certifications() {
               <div className="aspect-[3/4] overflow-hidden bg-zinc-950 p-4">
                 <img
                   src={item.src}
-                  alt={`Certificado: ${item.title} — ${item.institution}`}
+                  alt={`${t.certs.certLabel}: ${item.title} — ${item.institution}`}
                   loading="lazy"
                   className="object-contain w-full h-full group-hover:scale-105 transition-transform duration-700"
                 />
@@ -138,7 +100,7 @@ export function Certifications() {
             <button
               type="button"
               onClick={() => setSelected(null)}
-              aria-label="Cerrar"
+              aria-label={t.certs.close}
               className="absolute top-6 right-6 p-3 border border-zinc-700 hover:border-acid hover:text-acid transition-colors"
             >
               <X size={20} />

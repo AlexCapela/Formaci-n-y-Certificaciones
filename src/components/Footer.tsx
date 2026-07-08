@@ -1,39 +1,21 @@
 import { Download, Mail, MapPin, Languages, UserPlus, ArrowUpRight, FolderOpen, MessageCircle } from 'lucide-react';
+import { useApp } from '../i18n/useApp';
 
 const WHATSAPP_URL = "https://wa.me/qr/UINSGCGPYZP3F1";
-
-const contactInfo = [
-  {
-    icon: <MessageCircle size={18} className="text-acid" />,
-    label: "WhatsApp",
-    value: "Enviar mensaje directo",
-    href: WHATSAPP_URL,
-    external: true
-  },
-  {
-    icon: <Mail size={18} className="text-acid" />,
-    label: "Email",
-    value: "acapellastore777@gmail.com",
-    href: "mailto:acapellastore777@gmail.com",
-    external: false
-  },
-  {
-    icon: <MapPin size={18} className="text-acid" />,
-    label: "Ubicación",
-    value: "Brasil · Disponible para España / remoto",
-    href: null,
-    external: false
-  },
-  {
-    icon: <Languages size={18} className="text-acid" />,
-    label: "Idiomas",
-    value: "Portugués nativo · Español en desarrollo · Inglés técnico en desarrollo",
-    href: null,
-    external: false
-  }
-];
+const LINKEDIN_URL = "https://www.linkedin.com/in/alex-capela-euro-data-solutions-b310b4285";
+const GITHUB_URL = "https://github.com/AlexCapela";
+const EMAIL = "acapellastore777@gmail.com";
 
 export function Footer() {
+  const { t } = useApp();
+
+  const contactInfo = [
+    { icon: <MessageCircle size={18} className="text-acid" />, label: t.footer.labelWhatsapp, value: t.footer.valueWhatsapp, href: WHATSAPP_URL, external: true },
+    { icon: <Mail size={18} className="text-acid" />, label: t.footer.labelEmail, value: EMAIL, href: `mailto:${EMAIL}`, external: false },
+    { icon: <MapPin size={18} className="text-acid" />, label: t.footer.labelLocation, value: t.footer.valueLocation, href: null, external: false },
+    { icon: <Languages size={18} className="text-acid" />, label: t.footer.labelLanguages, value: t.footer.valueLanguages, href: null, external: false },
+  ];
+
   return (
     <footer id="contact" className="py-24 px-6 border-t border-zinc-800 bg-black relative overflow-hidden">
       <div className="max-w-7xl mx-auto flex flex-col gap-16 relative z-10">
@@ -41,18 +23,17 @@ export function Footer() {
         <div className="flex flex-col items-center text-center gap-8">
           <div className="flex items-center gap-4">
             <span className="h-px w-12 bg-acid"></span>
-            <span className="font-mono text-acid text-xs tracking-widest uppercase">Contacto</span>
+            <span className="font-mono text-acid text-xs tracking-widest uppercase">{t.footer.eyebrow}</span>
             <span className="h-px w-12 bg-acid"></span>
           </div>
 
           <h2 className="text-4xl md:text-6xl font-display uppercase tracking-tighter">
-            ¿Buscas un perfil que una<br/>
-            <span className="text-acid">Negocio y Tecnología?</span>
+            {t.footer.title1}<br/>
+            <span className="text-acid">{t.footer.title2}</span>
           </h2>
 
           <p className="text-zinc-400 font-sans text-xl max-w-2xl">
-            Data Analyst, automatización con IA, diseño web y desarrollo SaaS.
-            Abierto a incorporación en España, contratación remota o proyectos internacionales.
+            {t.footer.desc}
           </p>
         </div>
 
@@ -83,71 +64,42 @@ export function Footer() {
         </div>
 
         <div className="flex flex-wrap justify-center gap-4">
-          <a href="mailto:acapellastore777@gmail.com" className="brutal-btn-primary inline-flex items-center gap-2 px-10 py-5">
+          <a href={`mailto:${EMAIL}`} className="brutal-btn-primary inline-flex items-center gap-2 px-10 py-5">
             <Mail size={18} />
-            Contactar
+            {t.footer.ctaContact}
           </a>
-          <a
-            href={WHATSAPP_URL}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="brutal-btn inline-flex items-center gap-2 px-10 py-5"
-          >
+          <a href={WHATSAPP_URL} target="_blank" rel="noopener noreferrer" className="brutal-btn inline-flex items-center gap-2 px-10 py-5">
             <MessageCircle size={18} />
-            WhatsApp
+            {t.footer.ctaWhatsapp}
           </a>
-          <a
-            href="/Alex-Capela-CV-Espanol.pdf"
-            download
-            className="brutal-btn inline-flex items-center gap-2 px-10 py-5"
-          >
+          <a href="/Alex-Capela-CV-Espanol.pdf" download className="brutal-btn inline-flex items-center gap-2 px-10 py-5">
             <Download size={18} />
-            Descargar CV
+            {t.footer.ctaCV}
           </a>
           <a href="#projects" className="brutal-btn inline-flex items-center gap-2 px-10 py-5">
             <FolderOpen size={18} />
-            Ver proyectos
+            {t.footer.ctaProjects}
           </a>
-          <a
-            href="https://www.linkedin.com/in/alex-capela-euro-data-solutions-b310b4285"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="brutal-btn inline-flex items-center gap-2 px-10 py-5"
-          >
+          <a href={LINKEDIN_URL} target="_blank" rel="noopener noreferrer" className="brutal-btn inline-flex items-center gap-2 px-10 py-5">
             <UserPlus size={18} />
-            Conectar en LinkedIn
+            {t.footer.ctaLinkedin}
           </a>
         </div>
 
         <div className="w-full h-px bg-zinc-900" />
 
         <div className="w-full flex flex-col md:flex-row justify-between items-center gap-6 font-mono text-xs text-zinc-600 uppercase tracking-widest">
-          <p>© {new Date().getFullYear()} Alex Capela. Todos los derechos reservados.</p>
+          <p>© {new Date().getFullYear()} Alex Capela. {t.footer.rights}</p>
           <div className="flex gap-6">
-            <a
-              href={WHATSAPP_URL}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 hover:text-white transition-colors"
-            >
+            <a href={WHATSAPP_URL} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 hover:text-white transition-colors">
               WhatsApp
               <ArrowUpRight size={14} />
             </a>
-            <a
-              href="https://www.linkedin.com/in/alex-capela-euro-data-solutions-b310b4285"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 hover:text-white transition-colors"
-            >
+            <a href={LINKEDIN_URL} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 hover:text-white transition-colors">
               LinkedIn
               <ArrowUpRight size={14} />
             </a>
-            <a
-              href="https://github.com/AlexCapela"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 hover:text-white transition-colors"
-            >
+            <a href={GITHUB_URL} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 hover:text-white transition-colors">
               GitHub
               <ArrowUpRight size={14} />
             </a>

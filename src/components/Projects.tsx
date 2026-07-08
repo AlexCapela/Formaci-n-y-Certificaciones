@@ -1,45 +1,22 @@
 import { motion } from 'framer-motion';
 import { ArrowUpRight } from 'lucide-react';
+import { useApp } from '../i18n/useApp';
 
-const projects = [
-  {
-    index: "01",
-    name: "Agenda Fácil Barbearia",
-    type: "Sistema de Gestión / App",
-    desc: "Sistema de reservas para barberías con panel administrativo: gestión de servicios, profesionales, horarios y clientes en una sola plataforma.",
-    tech: ["React", "TypeScript", "Node.js", "PostgreSQL"]
-  },
-  {
-    index: "02",
-    name: "Euro Data Solutions",
-    type: "Consultoría de Datos e IA",
-    desc: "Proyecto de consultoría y soluciones de datos: business intelligence, automatización e inteligencia artificial aplicadas a negocios reales.",
-    tech: ["Power BI", "SQL", "Python", "Google Cloud", "IA Generativa"]
-  },
-  {
-    index: "03",
-    name: "MarketFlow AI",
-    type: "SaaS / Automatización Comercial",
-    desc: "SaaS y agencia de automatización comercial con CRM, gestión de leads, campañas, integraciones e IA aplicada a ventas.",
-    tech: ["React", "TypeScript", "CRM", "Integraciones API", "IA Aplicada"]
-  },
-  {
-    index: "04",
-    name: "TestFlow AI",
-    type: "Plataforma de Testing con IA",
-    desc: "Sistema de pruebas automatizadas para sitios web y apps mediante agentes de IA, personas simuladas y análisis de experiencia de usuario.",
-    tech: ["Agentes de IA", "TypeScript", "Automatización", "Análisis UX"]
-  },
-  {
-    index: "05",
-    name: "Acapella School of AI",
-    type: "Plataforma Educacional",
-    desc: "Plataforma educativa en desarrollo para enseñar inteligencia artificial, automatización, programación y creación de productos SaaS.",
-    tech: ["React", "IA", "SaaS", "EdTech"]
-  }
+const projectMeta = [
+  { name: "Agenda Fácil Barbearia", tech: ["React", "TypeScript", "Node.js", "PostgreSQL"] },
+  { name: "Euro Data Solutions", tech: ["Power BI", "SQL", "Python", "Google Cloud", "IA Generativa"] },
+  { name: "MarketFlow AI", tech: ["React", "TypeScript", "CRM", "Integraciones API", "IA Aplicada"] },
+  { name: "TestFlow AI", tech: ["Agentes de IA", "TypeScript", "Automatización", "Análisis UX"] },
+  { name: "Acapella School of AI", tech: ["React", "IA", "SaaS", "EdTech"] },
 ];
 
 export function Projects() {
+  const { t } = useApp();
+  const projects = projectMeta.map((p, i) => ({
+    index: String(i + 1).padStart(2, '0'),
+    ...p,
+    ...t.projects.items[i],
+  }));
   return (
     <section id="projects" className="py-24 md:py-32 px-6 border-t border-zinc-900 bg-zinc-950">
       <div className="max-w-7xl mx-auto flex flex-col gap-16">
@@ -47,10 +24,10 @@ export function Projects() {
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-8">
           <div>
             <h2 className="text-4xl md:text-6xl font-display uppercase tracking-tighter leading-none mb-4">
-              Proyectos<br/>Destacados
+              {t.projects.title1}<br/>{t.projects.title2}
             </h2>
             <p className="font-mono text-zinc-400 text-sm tracking-widest uppercase">
-              // Portfolio técnico
+              {t.projects.subtitle}
             </p>
           </div>
         </div>
@@ -99,7 +76,7 @@ export function Projects() {
                 href="#"
                 className="brutal-btn inline-flex items-center gap-2 whitespace-nowrap lg:self-center"
               >
-                Ver detalles
+                {t.projects.cta}
                 <ArrowUpRight size={16} className="group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
               </a>
             </motion.article>

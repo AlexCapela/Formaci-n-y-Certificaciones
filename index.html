@@ -2,6 +2,16 @@
 <html lang="es">
   <head>
     <meta charset="UTF-8" />
+    <script>
+      (function () {
+        try {
+          var t = localStorage.getItem('ac-theme');
+          if (t === 'light') document.documentElement.classList.add('light');
+          var l = localStorage.getItem('ac-lang');
+          if (l === 'es' || l === 'en' || l === 'pt') document.documentElement.lang = l;
+        } catch (e) {}
+      })();
+    </script>
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
