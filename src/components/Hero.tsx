@@ -78,12 +78,12 @@ export function Hero() {
         </div>
 
         <motion.div
-          initial={{ opacity: 0, x: 60 }}
-          animate={{ opacity: 1, x: 0 }}
+          initial={{ opacity: 0, y: 40 }}
+          animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1, delay: 0.4, ease: [0.16, 1, 0.3, 1] }}
-          className="hidden lg:block relative"
+          className="relative w-full max-w-xs sm:max-w-sm mx-auto lg:max-w-none lg:mx-0 order-first lg:order-none"
         >
-          <div className="absolute -inset-3 border border-acid/25 rounded-sm translate-x-4 translate-y-4 pointer-events-none" />
+          <div className="hidden lg:block absolute -inset-3 border border-acid/25 rounded-sm translate-x-4 translate-y-4 pointer-events-none" />
           <div className="relative aspect-[4/5] overflow-hidden rounded-sm border border-zinc-800">
             <img
               src="/alex-capela-retrato.png"
