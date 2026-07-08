@@ -1,23 +1,35 @@
-import { Download, Mail, MapPin, Languages, UserPlus, ArrowUpRight, FolderOpen } from 'lucide-react';
+import { Download, Mail, MapPin, Languages, UserPlus, ArrowUpRight, FolderOpen, MessageCircle } from 'lucide-react';
+
+const WHATSAPP_URL = "https://wa.me/qr/UINSGCGPYZP3F1";
 
 const contactInfo = [
+  {
+    icon: <MessageCircle size={18} className="text-acid" />,
+    label: "WhatsApp",
+    value: "Enviar mensaje directo",
+    href: WHATSAPP_URL,
+    external: true
+  },
   {
     icon: <Mail size={18} className="text-acid" />,
     label: "Email",
     value: "acapellastore777@gmail.com",
-    href: "mailto:acapellastore777@gmail.com"
+    href: "mailto:acapellastore777@gmail.com",
+    external: false
   },
   {
     icon: <MapPin size={18} className="text-acid" />,
     label: "Ubicación",
     value: "Brasil · Disponible para España / remoto",
-    href: null
+    href: null,
+    external: false
   },
   {
     icon: <Languages size={18} className="text-acid" />,
     label: "Idiomas",
     value: "Portugués nativo · Español en desarrollo · Inglés técnico en desarrollo",
-    href: null
+    href: null,
+    external: false
   }
 ];
 
@@ -44,7 +56,7 @@ export function Footer() {
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-px bg-zinc-900 border border-zinc-900">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-px bg-zinc-900 border border-zinc-900">
           {contactInfo.map((item) => (
             <div key={item.label} className="bg-black p-8 flex flex-col gap-3 hover:bg-zinc-950 transition-colors">
               <div className="flex items-center gap-3">
@@ -54,7 +66,11 @@ export function Footer() {
                 </span>
               </div>
               {item.href ? (
-                <a href={item.href} className="font-sans text-white text-base md:text-lg break-all hover:text-acid transition-colors">
+                <a
+                  href={item.href}
+                  {...(item.external ? { target: "_blank", rel: "noopener noreferrer" } : {})}
+                  className="font-sans text-white text-base md:text-lg break-all hover:text-acid transition-colors"
+                >
                   {item.value}
                 </a>
               ) : (
@@ -70,6 +86,15 @@ export function Footer() {
           <a href="mailto:acapellastore777@gmail.com" className="brutal-btn-primary inline-flex items-center gap-2 px-10 py-5">
             <Mail size={18} />
             Contactar
+          </a>
+          <a
+            href={WHATSAPP_URL}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="brutal-btn inline-flex items-center gap-2 px-10 py-5"
+          >
+            <MessageCircle size={18} />
+            WhatsApp
           </a>
           <a
             href="/Alex-Capela-CV-Espanol.pdf"
@@ -99,6 +124,15 @@ export function Footer() {
         <div className="w-full flex flex-col md:flex-row justify-between items-center gap-6 font-mono text-xs text-zinc-600 uppercase tracking-widest">
           <p>© {new Date().getFullYear()} Alex Capela. Todos los derechos reservados.</p>
           <div className="flex gap-6">
+            <a
+              href={WHATSAPP_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 hover:text-white transition-colors"
+            >
+              WhatsApp
+              <ArrowUpRight size={14} />
+            </a>
             <a
               href="https://www.linkedin.com/in/alex-capela-euro-data-solutions-b310b4285"
               target="_blank"
